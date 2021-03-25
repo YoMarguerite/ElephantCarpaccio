@@ -8,6 +8,7 @@ namespace ElephantCarpaccio
     public class Ticket
     {
         private List<GroupOfArticle> articles = new List<GroupOfArticle>();
+        int discount {get; set;}
 
         public GroupOfArticle Add(Article article, int quantity)
         {
@@ -46,6 +47,8 @@ namespace ElephantCarpaccio
 
             Console.WriteLine(String.Concat(Enumerable.Repeat("-", 55)));
 
+            Console.WriteLine($"Discount {discount}%".PadRight(44) + "-" + Formatter.FormatPrice(PercentValue(discount)));
+
             Console.WriteLine("Total without taxes".PadRight(45) + Formatter.FormatPrice(TotalUnitPrice));
 
             Console.WriteLine($"Taxe {CodePays.GetCurrentTVA}%".PadRight(44) + "+" + Formatter.FormatPrice(PercentValue(CodePays.GetCurrentTVA)));
@@ -53,6 +56,20 @@ namespace ElephantCarpaccio
             Console.WriteLine(String.Concat(Enumerable.Repeat("-", 55)));
 
             Console.WriteLine("Total price".PadRight(45) + Formatter.FormatPrice(TotalUnitPrice + PercentValue(CodePays.GetCurrentTVA)));
+        }
+        public int Discount
+        {
+            get
+            {
+                int result = 0;
+                float totalPrice = articles.Sum(article => article.TotalPrice);
+                if (totalPrice > 1000) result = 3;
+                return result;
+            }
+            set
+            {
+                discount = value;
+            }
         }
     }
 }
