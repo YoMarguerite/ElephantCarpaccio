@@ -9,6 +9,8 @@ namespace ElephantCarpaccio
     {
         private List<GroupOfArticle> articles = new List<GroupOfArticle>();
 
+        public int tauxTVA;
+
         public GroupOfArticle Add(Article article, int quantity)
         {
             GroupOfArticle group = new GroupOfArticle(article, quantity);
@@ -22,6 +24,11 @@ namespace ElephantCarpaccio
             {
                 return articles.Sum(group => group.article.unitPrice * group.quantity);
             }
+        }
+
+        public float PercentValue(float value)
+        {
+            return (TotalUnitPrice / 100) * value;
         }
 
         public void Display()
@@ -42,6 +49,12 @@ namespace ElephantCarpaccio
             Console.WriteLine(String.Concat(Enumerable.Repeat("-", 55)));
 
             Console.WriteLine("Total without taxes".PadRight(45) + Formatter.FormatPrice(TotalUnitPrice));
+
+            Console.WriteLine($"Taxe {tauxTVA}%".PadRight(44) + "+" + Formatter.FormatPrice(PercentValue(tauxTVA)));
+
+            Console.WriteLine(String.Concat(Enumerable.Repeat("-", 55)));
+
+            Console.WriteLine("Total price".PadRight(45) + Formatter.FormatPrice(TotalUnitPrice + PercentValue(tauxTVA)));
         }
     }
 }
