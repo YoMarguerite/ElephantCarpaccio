@@ -26,9 +26,44 @@ namespace ElephantCarpaccio
                 }
             } while (code == "");
 
-            ticket.Add(new Article("sushi", 5.5f), 1);
-            ticket.Add(new Article("spaghetti", 1.99f), 3);
-            ticket.Add(new Article("stylo", 0.49f), 1500);
+            do
+            {
+                Console.WriteLine("Ajouter un article :");
+
+                Console.Write("Nom : ");
+                string name = Console.ReadLine();
+
+                Console.Write("Prix : ");
+                float price = -1;
+                do
+                {
+                    string str = Console.ReadLine();
+                    if(!float.TryParse(str, out price))
+                    {
+                        price = -1;
+                        Console.WriteLine("Saisissez une valeur valide stp.");
+                    }
+                } while (price == -1);
+
+                Console.Write("Quantité : ");
+                int quantity = -1;
+                do
+                {
+                    string str = Console.ReadLine();
+                    if (!Int32.TryParse(str, out quantity))
+                    {
+                        quantity = -1;
+                        Console.WriteLine("Saisissez une valeur valide stp.");
+                    }
+                } while (quantity < 0);
+
+                ticket.Add(new Article(name, price), quantity);
+                Console.WriteLine("Article ajouté.");
+
+                Console.WriteLine("Pour arrêter d'ajouter des articles appuyez sur ESC.");
+
+            } while (Console.ReadKey().Key != ConsoleKey.Escape);
+            Console.WriteLine();
 
             ticket.Display();
             Console.ReadLine();
