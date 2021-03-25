@@ -1,3 +1,5 @@
+using ElephantCarpaccio;
+using System;
 using System.Collections.Generic;
 
 public abstract class CodePays
@@ -17,5 +19,21 @@ public abstract class CodePays
     public static float GetTVA(Code pays)
     {
         return tva[(int)pays];
+    }
+
+    public static void Display()
+    {
+        string colCodePays = Formatter.FormatString("Code Pays");
+        string colTauxTva = Formatter.FormatString("Taux TVA");
+        string inter = " --- ";
+
+        Console.WriteLine(colCodePays + inter + colTauxTva + inter);
+
+        int i = 0;
+        foreach (String str in Enum.GetNames(typeof(Code)))
+        {
+            Console.WriteLine(str.PadRight(15) + tva[i]);
+            i++;
+        }
     }
 }
