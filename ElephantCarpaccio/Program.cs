@@ -7,6 +7,7 @@ namespace ElephantCarpaccio
         static void Main(string[] args)
         {
             Ticket ticket = new Ticket();
+            CodePays.Display();
 
             ticket.Add(new Article("sushi", 5.5f), 1);
             ticket.Add(new Article("spaghetti", 1.99f), 3);
