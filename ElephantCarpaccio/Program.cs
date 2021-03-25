@@ -12,18 +12,18 @@ namespace ElephantCarpaccio
             ticket.Add(new Article("spaghetti", 1.99f), 3);
             ticket.Add(new Article("stylo", 0.49f), 1500);
 
-            Console.WriteLine("Saisir le montant de la TVA");
-            int montant = -1;
+            Console.WriteLine("Saisir le taux de la TVA");
+            int taux = -1;
             do
             {
                 string read = Console.ReadLine();
-                if(!Int32.TryParse(read, out montant))
+                if(!Int32.TryParse(read, out taux))
                 {
                     Console.WriteLine("Saisissez une valeur valide stp.");
                 }
-            } while (montant < 0);
+            } while (taux < 0);
 
-            ticket.montantTVA = montant;
+            ticket.tauxTVA = taux;
 
             ticket.Display();
             Console.ReadLine();
