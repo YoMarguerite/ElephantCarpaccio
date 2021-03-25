@@ -16,9 +16,9 @@ public abstract class CodePays
 
     public static Code current = Code.fr;
 
-    public static float GetTVA(Code pays)
+    public static float GetCurrentTVA
     {
-        return tva[(int)pays];
+        get { return tva[(int)current]; }
     }
 
     public static void Display()
