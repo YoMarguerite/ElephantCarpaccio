@@ -26,34 +26,6 @@ namespace ElephantCarpaccio
                 }
             } while (code == "");
 
-            ticket.Add(new Article("sushi", 5.5f), 1);
-            ticket.Add(new Article("spaghetti", 1.99f), 3);
-            ticket.Add(new Article("stylo", 10f), 1500);
-
-            if (ticket.Discount != 0)
-            {
-                Console.WriteLine("On vous suggère une promotion de " + ticket.Discount);
-                string discount = "";
-                do
-                {
-                    discount = Console.ReadLine();
-                    if (discount == "oui")
-                    {
-                        ticket.Discount = 3;
-                    }
-                    else if (discount == "non")
-                    {
-                        Console.WriteLine("Saisir le montant de la promotion en pourcentage");
-                        ticket.Discount = 0;
-                    }
-                    else
-                    {
-                        discount = "";
-                        Console.WriteLine("Saisissez une valeur valide stp.");
-                    }
-                } while (discount == "");
-            }
-
             do
             {
                 Console.WriteLine("Ajouter un article :");
@@ -92,6 +64,30 @@ namespace ElephantCarpaccio
 
             } while (Console.ReadKey().Key != ConsoleKey.Escape);
             Console.WriteLine();
+
+            if (ticket.Discount != 0)
+            {
+                Console.WriteLine("On vous suggère une promotion de " + ticket.Discount + "%. Répondre oui ou non.");
+                string discount = "";
+                do
+                {
+                    discount = Console.ReadLine();
+                    if (discount == "oui")
+                    {
+                        ticket.Discount = 3;
+                    }
+                    else if (discount == "non")
+                    {
+                        Console.WriteLine("Saisir le montant de la promotion en pourcentage");
+                        ticket.Discount = 0;
+                    }
+                    else
+                    {
+                        discount = "";
+                        Console.WriteLine("Saisissez une valeur valide stp.");
+                    }
+                } while (discount == "");
+            }
 
             ticket.Display();
             Console.ReadLine();
