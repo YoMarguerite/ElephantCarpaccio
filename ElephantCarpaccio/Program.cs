@@ -6,7 +6,14 @@ namespace ElephantCarpaccio
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Ticket ticket = new Ticket();
+
+            ticket.Add(new Article("sushi", 5.5f), 1);
+            ticket.Add(new Article("spaghetti", 1.99f), 3);
+            ticket.Add(new Article("stylo", 0.49f), 1500);
+
+            ticket.Display();
+            Console.ReadLine();
         }
     }
 }
